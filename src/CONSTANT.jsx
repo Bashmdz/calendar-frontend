@@ -18,6 +18,16 @@ export const checkLoginFromNonLogin = () => {
     : true;
 };
 
+export const getErrorMessage = (message) => {
+  let toReturn = "";
+  for (const key in message) {
+    toReturn += `[${capitalizeFirstLetter(key.split("_").join(" "))}]: ${
+      message[key][0]
+    }\n`;
+  }
+  return toReturn;
+};
+
 export const setMessage = (text, color) => {
   let error = document.getElementById("error");
   error.innerHTML = text;
