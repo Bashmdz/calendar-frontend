@@ -133,7 +133,15 @@ const AddNewTask = () => {
         formData.append("endDate", data.endDate);
         formData.append("attachment", attachment);
         formData.append("description", data.description);
-        formData.append("assign_users", JSON.stringify(data.assign_users));
+        formData.append(
+          "assign_users",
+          JSON.stringify([
+            session?.personal?.id,
+            ...data.assign_users?.map((a, b) => {
+              return a.value;
+            }),
+          ])
+        );
 
         const response = await axios.post(
           CONSTANT.server + "api/task",
