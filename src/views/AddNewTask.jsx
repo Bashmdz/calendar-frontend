@@ -34,11 +34,35 @@ const AddNewTask = () => {
     }
   };
 
+  const handleCreateCategory = async (inputValue) => {
+    try {
+      const response = await axios.post(CONSTANT.server + "api/categories/", {
+        name: inputValue,
+        // Add other necessary fields according to your backend model
+      });
+      // Assuming the response includes the new category object with an id
+      const newCategory = response.data;
+      const newOption = { value: newCategory.id, label: newCategory.name };
+      setCategories([...categories, newOption]);
+      handleCategoryChange(newOption); // Set the newly created category as selected
+    } catch (error) {
+      console.error("Error creating the new category:", error);
+      // Handle the error (e.g., display an error message)
+    }
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({
       ...prevData,
       [name]: value,
+    }));
+  };
+
+  const handleCategoryChange = (newValue) => {
+    setData((prevData) => ({
+      ...prevData,
+      category: newValue || "",
     }));
   };
 
@@ -133,13 +157,13 @@ const AddNewTask = () => {
             Category
           </label>
           <CreatableSelect
-            className="form-select"
             id="category"
             name="category"
             isClearable
             options={categories}
             value={data.category}
-            onChange={handleInputChange}
+            onChange={handleCategoryChange}
+            onCreateOption={handleCreateCategory}
           />
         </div>
       </div>
