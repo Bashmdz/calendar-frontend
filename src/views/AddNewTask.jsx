@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { CONSTANT } from "../CONSTANT";
 
 const AddNewTask = () => {
   const [data, setData] = useState({
@@ -22,7 +23,7 @@ const AddNewTask = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("api/categories");
+      const response = await axios.get(CONSTANT.server + "api/categories");
       setCategories(response.data);
     } catch (error) {
       console.error(error);
@@ -41,34 +42,57 @@ const AddNewTask = () => {
     setAttachment(e.target.files[0]);
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  const validateForm = () => {
+    let allGood = true;
 
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("priority", data.priority);
-    formData.append("category", data.category);
-    formData.append("progress", data.progress);
-    formData.append("startDate", data.startDate);
-    formData.append("endDate", data.endDate);
-    formData.append("attachment", attachment);
-    formData.append("description", data.description);
+    if (!data.title) {
+      setMessage("Enter task title.", "danger");
+      allGood = false;
+    } else if (!data.category) {
+      setMessage("Select a category.", "danger");
+      allGood = false;
+    } else if (!data.endDate) {
+      setMessage("Select an end date.", "danger");
+      allGood = false;
+    } else if (!data.description) {
+      setMessage("Enter task description.", "danger");
+      allGood = false;
+    }
 
-    try {
-      const response = await axios.post("api/task", formData);
-      console.log(response.data);
-      setMessage("Task created successfully!", "success");
-    } catch (error) {
-      console.error(error);
-      setMessage("Failed to create task. Please try again.", "danger");
+    return allGood;
+  };
+
+  const handleAddClick = async () => {
+    if (validateForm()) {
+      try {
+        const formData = new FormData();
+        formData.append("title", data.title);
+        formData.append("priority", data.priority);
+        formData.append("category", data.category);
+        formData.append("progress", data.progress);
+        formData.append("startDate", data.startDate);
+        formData.append("endDate", data.endDate);
+        formData.append("attachment", attachment);
+        formData.append("description", data.description);
+
+        const response = await axios.post(
+          CONSTANT.server + "api/task",
+          formData
+        );
+        console.log(response.data);
+        setMessage("Task created successfully!", "success");
+      } catch (error) {
+        console.error(error);
+        setMessage("Failed to create task. Please try again.", "danger");
+      }
     }
   };
 
   return (
     <div className="container mt-5">
-      <h2>New Task Form</h2>
-      <form onSubmit={onSubmit}>
-        <div className="mb-3">
+      <h2 className="text-center mb-4">New Task Form</h2>
+      <div className="row">
+        <div className="col-sm-6 col-md-4 mb-3">
           <label htmlFor="title" className="form-label">
             Task Title
           </label>
@@ -82,7 +106,7 @@ const AddNewTask = () => {
             required
           />
         </div>
-        <div className="mb-3">
+        <div className="col-sm-6 col-md-4 mb-3">
           <label htmlFor="priority" className="form-label">
             Priority
           </label>
@@ -99,7 +123,7 @@ const AddNewTask = () => {
             <option value="Low">Low</option>
           </select>
         </div>
-        <div className="mb-3">
+        <div className="col-sm-6 col-md-4 mb-3">
           <label htmlFor="category" className="form-label">
             Category
           </label>
@@ -111,14 +135,16 @@ const AddNewTask = () => {
             onChange={handleInputChange}
             required
           >
-            {categories.map((category) => (
+            {categories?.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.name}
               </option>
             ))}
           </select>
         </div>
-        <div className="mb-3">
+      </div>
+      <div className="row">
+        <div className="col-sm-6 col-md-4 mb-3">
           <label htmlFor="progress" className="form-label">
             Progress
           </label>
@@ -135,7 +161,7 @@ const AddNewTask = () => {
             <option value="Done">Done</option>
           </select>
         </div>
-        <div className="mb-3">
+        <div className="col-sm-6 col-md-4 mb-3">
           <label htmlFor="startDate" className="form-label">
             Start Date
           </label>
@@ -149,7 +175,7 @@ const AddNewTask = () => {
             required
           />
         </div>
-        <div className="mb-3">
+        <div className="col-sm-6 col-md-4 mb-3">
           <label htmlFor="endDate" className="form-label">
             End Date
           </label>
@@ -163,38 +189,42 @@ const AddNewTask = () => {
             required
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="attachment" className="form-label">
-            Attachment
-          </label>
-          <input
-            type="file"
-            className="form-control"
-            id="attachment"
-            name="attachment"
-            onChange={handleFileChange}
-          />
-          {attachment && (
-            <span className="text-success">File uploaded successfully</span>
-          )}
-        </div>
-        <div className="mb-3">
-          <label htmlFor="description" className="form-label">
-            Description
-          </label>
-          <textarea
-            className="form-control"
-            id="description"
-            name="description"
-            value={data.description}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Add
-        </button>
-      </form>
+      </div>
+      <div className="mb-3">
+        <label htmlFor="attachment" className="form-label">
+          Attachment
+        </label>
+        <input
+          type="file"
+          className="form-control"
+          id="attachment"
+          name="attachment"
+          onChange={handleFileChange}
+        />
+        {attachment && (
+          <span className="text-success">File uploaded successfully</span>
+        )}
+      </div>
+      <div className="mb-3">
+        <label htmlFor="description" className="form-label">
+          Description
+        </label>
+        <textarea
+          className="form-control"
+          id="description"
+          name="description"
+          value={data.description}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={handleAddClick}
+      >
+        Add
+      </button>
     </div>
   );
 };
