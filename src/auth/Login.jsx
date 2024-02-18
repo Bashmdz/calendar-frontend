@@ -13,7 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (checkLoginFromLogin()) {
-      navigate("/");
+      navigate("/dashboard");
     }
   }, []);
   const initialPayload = {

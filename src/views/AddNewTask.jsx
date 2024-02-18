@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { CONSTANT, setMessage, resetMessage } from "../CONSTANT";
 import CreatableSelect from "react-select/creatable";
 import { useNavigate } from "react-router-dom";
+import UserData from "../contexts/UserData";
 
 const AddNewTask = () => {
+  let { session } = useContext(UserData);
   let navigate = useNavigate();
   const [data, setData] = useState({
     title: "",
@@ -14,12 +16,15 @@ const AddNewTask = () => {
     startDate: new Date().toISOString().split("T")[0],
     endDate: "",
     description: "",
+    assign_users: [],
   });
   const [categories, setCategories] = useState([]);
   const [attachment, setAttachment] = useState(null);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     fetchCategories();
+    fetchUsers();
   }, []);
 
   const fetchCategories = async () => {
@@ -30,6 +35,23 @@ const AddNewTask = () => {
         label: cat.name,
       }));
       setCategories(categoryOptions);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get(
+        CONSTANT.server + "authentication/users"
+      );
+      const userOptions = response.data
+        .filter((user) => user.id !== session?.personal?.id)
+        .map((user) => ({
+          value: user.id,
+          label: user.name,
+        }));
+      setUsers(userOptions);
     } catch (error) {
       console.error(error);
     }
@@ -64,6 +86,13 @@ const AddNewTask = () => {
     setData((prevData) => ({
       ...prevData,
       category: newValue || "",
+    }));
+  };
+
+  const handleAssignUsersChange = (newValue) => {
+    setData((prevData) => ({
+      ...prevData,
+      assign_users: newValue || [],
     }));
   };
 
@@ -104,6 +133,7 @@ const AddNewTask = () => {
         formData.append("endDate", data.endDate);
         formData.append("attachment", attachment);
         formData.append("description", data.description);
+        formData.append("assign_users", JSON.stringify(data.assign_users));
 
         const response = await axios.post(
           CONSTANT.server + "api/task",
@@ -223,22 +253,37 @@ const AddNewTask = () => {
           />
         </div>
       </div>
-      <div className="mb-3">
-        <label htmlFor="attachment" className="form-label">
-          Attachment
-        </label>
-        <input
-          type="file"
-          className="form-control"
-          id="attachment"
-          name="attachment"
-          onChange={handleFileChange}
-        />
-        {attachment && (
-          <span className="text-success d-block mt-2">
-            File uploaded successfully
-          </span>
-        )}
+      <div className="row">
+        <div className="col-sm-6 col-md-4 mb-3">
+          <label htmlFor="assign_users" className="form-label">
+            Assign Users
+          </label>
+          <CreatableSelect
+            id="assign_users"
+            name="assign_users"
+            isMulti
+            options={users}
+            value={data.assign_users}
+            onChange={handleAssignUsersChange}
+          />
+        </div>
+        <div className="col-sm-6 col-md-8 mb-3">
+          <label htmlFor="attachment" className="form-label">
+            Attachment
+          </label>
+          <input
+            type="file"
+            className="form-control"
+            id="attachment"
+            name="attachment"
+            onChange={handleFileChange}
+          />
+          {attachment && (
+            <span className="text-success d-block mt-2">
+              File uploaded successfully
+            </span>
+          )}
+        </div>
       </div>
       <div className="mb-3">
         <label htmlFor="description" className="form-label">

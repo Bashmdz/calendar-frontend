@@ -12,7 +12,7 @@ const Register = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (checkLoginFromLogin()) {
-      navigate("/");
+      navigate("/dashboard");
     }
   }, []);
   const init__payload = {

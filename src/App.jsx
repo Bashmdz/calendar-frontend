@@ -15,7 +15,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Layout>
+              <Layout auth>
                 <Home />
               </Layout>
             }
@@ -31,7 +31,7 @@ function App() {
           <Route
             path="/register"
             element={
-              <Layout>
+              <Layout auth>
                 <Register />
               </Layout>
             }
@@ -39,7 +39,7 @@ function App() {
           <Route
             path="/signin"
             element={
-              <Layout>
+              <Layout auth>
                 <Login />
               </Layout>
             }

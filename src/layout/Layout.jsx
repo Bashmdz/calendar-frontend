@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import UserData from "../contexts/UserData";
+import { checkLoginFromNonLogin } from "../CONSTANT";
+import { useNavigate } from "react-router-dom";
 export default function Layout(props) {
+  let navigate = useNavigate();
   // ------------------
   // SESSION - END
   // ------------------
@@ -31,6 +34,15 @@ export default function Layout(props) {
   // ------------------
   // SESSION - END
   // ------------------
+
+  useEffect(() => {
+    if (!props?.auth) {
+      if (checkLoginFromNonLogin()) {
+        navigate("/signin");
+      }
+    }
+  }, [session]);
+
   return (
     <>
       <UserData.Provider value={value}>
