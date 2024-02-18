@@ -4,18 +4,11 @@ export const CONSTANT = {
   client: "http://localhost:5173/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
 };
 
-export const checkLoginFromLogin = () => {
+export const checkIsLoggedIn = () => {
   return sessionStorage.getItem("loggedin") &&
     JSON.parse(sessionStorage.getItem("loggedin")).data
     ? true
     : false;
-};
-
-export const checkLoginFromNonLogin = () => {
-  return sessionStorage.getItem("loggedin") &&
-    JSON.parse(sessionStorage.getItem("loggedin")).data
-    ? false
-    : true;
 };
 
 export const getErrorMessage = (message) => {

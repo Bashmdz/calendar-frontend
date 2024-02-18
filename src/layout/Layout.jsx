@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import UserData from "../contexts/UserData";
-import { checkLoginFromNonLogin } from "../CONSTANT";
+import { checkIsLoggedIn } from "../CONSTANT";
 import { useNavigate } from "react-router-dom";
 export default function Layout(props) {
   let navigate = useNavigate();
@@ -36,17 +36,15 @@ export default function Layout(props) {
   // ------------------
 
   useEffect(() => {
-    if (!props?.auth) {
-      if (checkLoginFromNonLogin()) {
-        navigate("/signin");
-      }
+    if (!props?.auth && !checkIsLoggedIn()) {
+      navigate("/signin");
     }
   }, [session]);
 
   return (
     <>
       <UserData.Provider value={value}>
-        <Header />
+        <Header isLoggedIn={session?.isLoggedIn} personal={session?.personal} />
         <div className="">{props.children}</div>
         <Footer />
       </UserData.Provider>

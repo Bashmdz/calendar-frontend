@@ -5,14 +5,14 @@ import {
   CONSTANT,
   setMessage,
   resetMessage,
-  checkLoginFromLogin,
+  checkIsLoggedIn,
   getErrorMessage,
 } from "../CONSTANT";
 
 const Login = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    if (checkLoginFromLogin()) {
+    if (checkIsLoggedIn()) {
       navigate("/dashboard");
     }
   }, []);

@@ -11,7 +11,7 @@ const ListItem = (props) => {
   );
 };
 
-const Header = () => {
+const Header = (props) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -34,8 +34,17 @@ const Header = () => {
           id="navbarNavDropdown"
         >
           <ul className="navbar-nav">
-            <ListItem label="Register" to="/register"/>
-            <ListItem label="Sign In" to="/signin"/>
+            {props?.isLoggedIn ? (
+              <>
+                <ListItem label={props?.personal?.name} to="/register" />
+                <ListItem label="Logout" to="/signin" />
+              </>
+            ) : (
+              <>
+                <ListItem label="Register" to="/register" />
+                <ListItem label="Sign In" to="/signin" />
+              </>
+            )}
           </ul>
         </div>
       </div>
