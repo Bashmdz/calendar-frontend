@@ -1,10 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom if you're using it
+import { Link } from "react-router-dom";
+
+const ListItem = (props) => {
+  return (
+    <li className="nav-item">
+      <Link className="nav-link" aria-current="page" to={props?.to || "/"}>
+        {props?.label}
+      </Link>
+    </li>
+  );
+};
 
 const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
+      <div className="container">
         <Link className="navbar-brand" to="/">
           Calendar App
         </Link>
@@ -24,49 +34,8 @@ const Header = () => {
           id="navbarNavDropdown"
         >
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Features
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Pricing
-              </a>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown link
-              </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </li>
-              </ul>
-            </li>
+            <ListItem label="Register" />
+            <ListItem label="Sign In" />
           </ul>
         </div>
       </div>
