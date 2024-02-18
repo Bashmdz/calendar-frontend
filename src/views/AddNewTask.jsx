@@ -133,7 +133,9 @@ const AddNewTask = () => {
         formData.append("progress", data.progress);
         formData.append("startDate", data.startDate);
         formData.append("endDate", data.endDate);
-        formData.append("attachment", attachment);
+        if (attachment) {
+          formData.append("attachment", attachment);
+        }
         formData.append("description", data.description);
         formData.append(
           "assign_users",
