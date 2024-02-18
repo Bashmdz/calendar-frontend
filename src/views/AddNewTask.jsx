@@ -128,7 +128,7 @@ const AddNewTask = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center mb-4">Add New Task</h2>
+      <h2 className="text-center mb-4">New Task Form</h2>
       <div className="row">
         <div className="col-sm-6 col-md-4 mb-3">
           <label htmlFor="title" className="form-label">
