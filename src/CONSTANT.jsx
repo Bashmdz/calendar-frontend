@@ -17,3 +17,26 @@ export const checkLoginFromNonLogin = () => {
     ? false
     : true;
 };
+
+export const setMessage = (text, color) => {
+  let error = document.getElementById("error");
+  error.innerHTML = text;
+  error.classList.add("text-" + color);
+  error.style.display = "block";
+};
+
+export const resetMessage = () => {
+  let error = document.getElementById("error");
+  error.innerText = "";
+  error.style.display = "none";
+  error.classList.remove("text-danger");
+  error.classList.remove("text-success");
+};
+
+export const isMessage = () => {
+  let error = document.getElementById("error");
+  if (error.style.display === "none") {
+    return false;
+  }
+  return true;
+};
