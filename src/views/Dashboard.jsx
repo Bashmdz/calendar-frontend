@@ -4,6 +4,7 @@ import axios from "axios";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import { CONSTANT } from "../CONSTANT";
 
 const localizer = momentLocalizer(moment);
 
@@ -19,7 +20,7 @@ const Dashboard = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await axios.get("/api/tasks");
+      const response = await axios.get(CONSTANT.server + "/api/tasks");
       const sortedTasks = response.data.sort(
         (a, b) => new Date(b.startDate) - new Date(a.startDate)
       );
