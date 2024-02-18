@@ -70,6 +70,7 @@ const Register = () => {
           }
         })
         .catch((error) => {
+          setMessage("System error!", "danger");
           console.log(error);
         });
     }
