@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CONSTANT, setMessage, resetMessage } from "../CONSTANT";
 import CreatableSelect from "react-select/creatable";
+import { useNavigate } from "react-router-dom";
 
 const AddNewTask = () => {
+  let navigate = useNavigate();
   const [data, setData] = useState({
     title: "",
     priority: "Important",
@@ -114,6 +116,9 @@ const AddNewTask = () => {
         );
         console.log(response.data);
         setMessage("Task created successfully!", "success");
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 2000);
       } catch (error) {
         console.error(error);
         setMessage("Failed to create task. Please try again.", "danger");
@@ -123,7 +128,7 @@ const AddNewTask = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center mb-4">New Task Form</h2>
+      <h2 className="text-center mb-4">Add New Task</h2>
       <div className="row">
         <div className="col-sm-6 col-md-4 mb-3">
           <label htmlFor="title" className="form-label">
