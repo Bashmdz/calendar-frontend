@@ -1,27 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { CONSTANT } from "../CONSTANT";
+import UserData from "../contexts/UserData";
 
 const localizer = momentLocalizer(moment);
 
 const Dashboard = () => {
+  let { session } = useContext(UserData);
   const [tasks, setTasks] = useState([]);
   const [displayTasks, setDisplayTasks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchTasks();
-  }, []);
+    if (session?.isLoggedIn) {
+      fetchTasks();
+    }
+  }, [session]);
 
   const fetchTasks = async () => {
     try {
-      const response = await axios.get(CONSTANT.server + "/api/tasks");
-      const sortedTasks = response.data.sort(
+      const response = await axios.get(
+        CONSTANT.server + "api/tasks/" + session?.personal?.id
+      );
+      const result = response.data?.map((a, b) => {
+        return a?.task;
+      });
+      const sortedTasks = result.sort(
         (a, b) => new Date(b.startDate) - new Date(a.startDate)
       );
       setTasks(sortedTasks);
