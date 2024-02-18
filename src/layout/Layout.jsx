@@ -41,10 +41,20 @@ export default function Layout(props) {
     }
   }, [session]);
 
+  const logout = async () => {
+    sessionStorage.removeItem("loggedin");
+    props.setSession(props.__init_session);
+    navigate("/signin");
+  };
+
   return (
     <>
       <UserData.Provider value={value}>
-        <Header isLoggedIn={session?.isLoggedIn} personal={session?.personal} />
+        <Header
+          isLoggedIn={session?.isLoggedIn}
+          logout={logout}
+          personal={session?.personal}
+        />
         <div className="">{props.children}</div>
         <Footer />
       </UserData.Provider>
