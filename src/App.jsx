@@ -4,6 +4,7 @@ import Home from "./views/Home";
 import Layout from "./layout/Layout";
 import "./App.css";
 import Register from "./auth/Register";
+import Login from "./auth/Login";
 
 function App() {
   return (
@@ -23,6 +24,14 @@ function App() {
             element={
               <Layout>
                 <Register />
+              </Layout>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <Layout>
+                <Login />
               </Layout>
             }
           />
