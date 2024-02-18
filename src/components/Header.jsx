@@ -34,8 +34,8 @@ const Header = () => {
           id="navbarNavDropdown"
         >
           <ul className="navbar-nav">
-            <ListItem label="Register" />
-            <ListItem label="Sign In" />
+            <ListItem label="Register" to="/register"/>
+            <ListItem label="Sign In" to="/signin"/>
           </ul>
         </div>
       </div>
