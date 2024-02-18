@@ -21,6 +21,14 @@ function App() {
             }
           />
           <Route
+            path="/dashboard"
+            element={
+              <Layout auth>
+                <Home />
+              </Layout>
+            }
+          />
+          <Route
             path="/addNewTask"
             element={
               <Layout>
