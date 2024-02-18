@@ -5,6 +5,7 @@ import Layout from "./layout/Layout";
 import "./App.css";
 import Register from "./auth/Register";
 import Login from "./auth/Login";
+import AddNewTask from "./views/AddNewTask";
 
 function App() {
   return (
@@ -16,6 +17,14 @@ function App() {
             element={
               <Layout>
                 <Home />
+              </Layout>
+            }
+          />
+          <Route
+            path="/addNewTask"
+            element={
+              <Layout>
+                <AddNewTask />
               </Layout>
             }
           />
