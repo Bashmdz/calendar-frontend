@@ -8,6 +8,7 @@ import Login from "./auth/Login";
 import AddNewTask from "./views/AddNewTask";
 import EditTask from "./views/EditTask";
 import ViewTask from "./views/ViewTask";
+import Dashboard from "./views/Dashboard";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
             path="/dashboard"
             element={
               <Layout>
-                <Home />
+                <Dashboard />
               </Layout>
             }
           />
