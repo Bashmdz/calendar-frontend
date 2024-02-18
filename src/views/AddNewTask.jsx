@@ -11,7 +11,6 @@ const AddNewTask = () => {
     progress: "Open",
     startDate: new Date().toISOString().split("T")[0],
     endDate: "",
-    attachment: null,
     description: "",
   });
   const [categories, setCategories] = useState([]);
@@ -36,7 +35,7 @@ const AddNewTask = () => {
 
   const handleCreateCategory = async (inputValue) => {
     try {
-      const response = await axios.post(CONSTANT.server + "api/categories/", {
+      const response = await axios.post(CONSTANT.server + "api/categories", {
         name: inputValue,
         // Add other necessary fields according to your backend model
       });
@@ -97,7 +96,7 @@ const AddNewTask = () => {
         const formData = new FormData();
         formData.append("title", data.title);
         formData.append("priority", data.priority);
-        formData.append("category", data.category);
+        formData.append("category", data.category?.value);
         formData.append("progress", data.progress);
         formData.append("startDate", data.startDate);
         formData.append("endDate", data.endDate);
@@ -106,7 +105,12 @@ const AddNewTask = () => {
 
         const response = await axios.post(
           CONSTANT.server + "api/task",
-          formData
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
         );
         console.log(response.data);
         setMessage("Task created successfully!", "success");
