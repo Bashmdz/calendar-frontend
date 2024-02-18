@@ -25,11 +25,15 @@ const EditTask = () => {
 
   useEffect(() => {
     if (session?.isLoggedIn) {
-      fetchTaskDetails();
-      fetchCategories();
-      fetchUsers();
+      if (!task_id || isNaN(task_id)) {
+        navigate("/dashboard");
+      } else {
+        fetchTaskDetails();
+        fetchCategories();
+        fetchUsers();
+      }
     }
-  }, [session]);
+  }, [session, task_id]);
 
   const fetchTaskDetails = async () => {
     try {

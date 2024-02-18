@@ -6,6 +6,7 @@ import "./App.css";
 import Register from "./auth/Register";
 import Login from "./auth/Login";
 import AddNewTask from "./views/AddNewTask";
+import EditTask from "./views/EditTask";
 
 function App() {
   return (
@@ -33,6 +34,22 @@ function App() {
             element={
               <Layout>
                 <AddNewTask />
+              </Layout>
+            }
+          />
+          <Route
+            path="/addNewTask"
+            element={
+              <Layout>
+                <AddNewTask />
+              </Layout>
+            }
+          />
+          <Route
+            path="/editTask/:task_id"
+            element={
+              <Layout>
+                <EditTask />
               </Layout>
             }
           />
