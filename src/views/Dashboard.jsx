@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
@@ -81,6 +81,12 @@ const Dashboard = () => {
 
   return (
     <div className="container mt-5">
+      <button
+        onClick={() => navigate("/addNewTask")}
+        className="btn btn-primary mb-4"
+      >
+        Create a new task
+      </button>
       <input
         type="text"
         placeholder="Search Tasks"
@@ -88,20 +94,27 @@ const Dashboard = () => {
         onChange={handleSearch}
         className="form-control mb-4"
       />
-      <button
-        onClick={() => navigate("/addNewTask")}
-        className="btn btn-primary mb-4"
-      >
-        Create a new Task
-      </button>
       <div>
         {displayTasks.map((task, index) => (
-          <div
-            key={index}
-            style={{ marginBottom: "1rem", backgroundColor: task.priority }}
-          >
-            {task.title} - {task.priority}
-          </div>
+          <Link to={`/viewTask/${task?.id}`} className="text-decoration-none ">
+            <div
+              key={index}
+              style={{
+                marginBottom: "1rem",
+                backgroundColor:
+                  task.priority === "Important"
+                    ? "red"
+                    : task.priority === "Medium"
+                    ? "yellow"
+                    : "green",
+                color: "white",
+                padding: "0.5rem",
+                borderRadius: "4px",
+              }}
+            >
+              {task.title} - {task.priority}
+            </div>
+          </Link>
         ))}
       </div>
       <Calendar
