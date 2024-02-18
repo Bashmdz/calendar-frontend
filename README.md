@@ -3,6 +3,7 @@
 ![CalenTask-responsiveness](readme-assets/am-i-responsive.png)
 
 ## Table of Contents
+
 - [Introduction](#introduction)
 - [Wireframes](#wireframes)
 - [Features](#features)
@@ -146,7 +147,7 @@ Short description: Wireframe for the view task page of CalenTask, displaying det
 
 ## Deployment
 
-CalenTask is deployed on Heroku using Heroku PostgreSQL as the database. By default, CalenTask uses SQLite3 as the database during development.
+CalenTask is deployed on Heroku using Node.js. As React has static files, the "serve" package is used.
 
 1. Create a Heroku account and install the Heroku CLI.
 2. Initialize a Git repository in your CalenTask project folder (`git init`).
@@ -154,17 +155,9 @@ CalenTask is deployed on Heroku using Heroku PostgreSQL as the database. By defa
 4. Set up Heroku PostgreSQL as the database (`heroku addons:create heroku-postgresql`).
 5. Push your code to the Heroku remote (`git push heroku master`).
 6. Run migrations and set up the database (`heroku run python manage.py migrate`).
-7. Your CalenTask application should now be deployed and accessible via the provided Heroku app URL.
-8. Your app should now be deployed and accessible via the provided Heroku URL.
-
-## CONSTANT.js
-
-Before running the project, go to `CONSTANT.js` and change the URLs to match your environment.
-
-```javascript
-export const CONSTANT = {
-  server: "http://127.0.0.1:8000/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
-  admin: "http://127.0.0.1:8000/admin/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
-  client: "http://localhost:5173/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
-};
-```
+7. Install the "serve" package (`npm install serve`).
+8. Add a start script to your `package.json` file: `"start": "serve -s build"`.
+9. Build your React app (`npm run build`).
+10. Deploy your app to Heroku (`git push heroku master`).
+11. Your CalenTask application should now be deployed and accessible via the provided Heroku app URL.
+12. Your app should now be deployed and accessible via the provided Heroku URL.

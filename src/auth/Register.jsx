@@ -6,6 +6,7 @@ import {
   setMessage,
   resetMessage,
   checkIsLoggedIn,
+  getErrorMessage,
 } from "../CONSTANT";
 
 const Register = () => {
@@ -57,7 +58,7 @@ const Register = () => {
           if (responce.data) {
             let res = responce.data;
             if (res.message) {
-              setMessage("Ensure this field has at least 8 characters.", "danger");
+              setMessage(getErrorMessage(res?.message), "danger");
             } else {
               sessionStorage.setItem(
                 "loggedin",
