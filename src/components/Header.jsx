@@ -49,6 +49,7 @@ const Header = (props) => {
           <ul className="navbar-nav">
             {props?.isLoggedIn ? (
               <>
+                <ListItem label="Dashboard" to="/dashboard" />
                 <li className="nav-item d-flex align-items-center justify-content-center me-3">
                   <p className="text-muted m-0 p-0">
                     Signed in as <b>{props?.personal?.name}</b>

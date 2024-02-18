@@ -141,14 +141,19 @@ const EditTask = () => {
     } else if (!data.category) {
       setMessage("Select a category.", "danger");
       allGood = false;
+    } else if (!data.startDate) {
+      setMessage("Select a start date.", "danger");
+      allGood = false;
     } else if (!data.endDate) {
       setMessage("Select an end date.", "danger");
+      allGood = false;
+    } else if (new Date(data.endDate) <= new Date(data.startDate)) {
+      setMessage("End date should be greater than start date.", "danger");
       allGood = false;
     } else if (!data.description) {
       setMessage("Enter task description.", "danger");
       allGood = false;
     }
-
     return allGood;
   };
 
@@ -324,7 +329,7 @@ const EditTask = () => {
               File uploaded successfully
             </span>
           )}
-          {!attachment && (
+          {!attachment && data?.attachment && (
             <span className="text-success d-block mt-2">
               Current: {data?.attachment}
             </span>

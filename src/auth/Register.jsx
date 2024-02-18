@@ -43,7 +43,7 @@ const Register = () => {
       !payload.email ||
       !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(payload.email)
     ) {
-      setMessage("Enetr valid email.", "danger");
+      setMessage("Enter valid email.", "danger");
       allGood = false;
     } else if (!payload.password) {
       setMessage("Enter valid password.", "danger");
@@ -57,7 +57,7 @@ const Register = () => {
           if (responce.data) {
             let res = responce.data;
             if (res.message) {
-              setMessage(res.message, "danger");
+              setMessage(getErrorMessage(res.message), "danger");
             } else {
               sessionStorage.setItem(
                 "loggedin",

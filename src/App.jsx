@@ -9,6 +9,7 @@ import AddNewTask from "./views/AddNewTask";
 import EditTask from "./views/EditTask";
 import ViewTask from "./views/ViewTask";
 import Dashboard from "./views/Dashboard";
+import TakeMeToAdmin from "./components/TakeMeToAdmin";
 
 function App() {
   return (
@@ -79,6 +80,8 @@ function App() {
               </Layout>
             }
           />
+          <Route path="/admin" element={<TakeMeToAdmin />} />
+          <Route path="/admin/" element={<TakeMeToAdmin />} />
         </Routes>
       </Router>
     </div>
