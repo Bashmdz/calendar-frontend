@@ -9,6 +9,7 @@ import AddNewTask from "./views/AddNewTask";
 import EditTask from "./views/EditTask";
 import ViewTask from "./views/ViewTask";
 import Dashboard from "./views/Dashboard";
+import Profile from "./views/Profile";
 import TakeMeToAdmin from "./components/TakeMeToAdmin";
 
 function App() {
@@ -33,10 +34,10 @@ function App() {
             }
           />
           <Route
-            path="/addNewTask"
+            path="/profile"
             element={
               <Layout>
-                <AddNewTask />
+                <Profile />
               </Layout>
             }
           />

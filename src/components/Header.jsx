@@ -29,7 +29,7 @@ const Header = (props) => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
         <Link className="navbar-brand" to="/">
-          Calendar App
+          <img src="/logo.png" style={{ width: "45px" }} />
         </Link>
         <button
           className="navbar-toggler"
@@ -49,12 +49,13 @@ const Header = (props) => {
           <ul className="navbar-nav">
             {props?.isLoggedIn ? (
               <>
-                <ListItem label="Dashboard" to="/dashboard" />
-                <li className="nav-item d-flex align-items-center justify-content-center me-3">
+                <li className="nav-item d-flex align-items-center justify-content-center me-2">
                   <p className="text-muted m-0 p-0">
-                    Signed in as <b>{props?.personal?.name}</b>
+                    Signed in as <b>{props?.personal?.name || "Anonymous"}</b>
                   </p>
                 </li>
+                <ListItem label="Dashboard" to="/dashboard" />
+                <ListItem label="Profile" to="/profile" />
                 <ListItem label="Logout" onClick={props?.logout} />
               </>
             ) : (

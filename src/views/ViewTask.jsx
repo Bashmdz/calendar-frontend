@@ -34,20 +34,33 @@ const ViewTask = () => {
     navigate(`/editTask/${task_id}`);
   };
 
+  const handleDeleteClick = async () => {
+    try {
+      await axios.delete(CONSTANT.server + `api/task/${task_id}`);
+      navigate("/dashboard");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="container mt-5">
-      <h2 className="text-center mb-4">Current Task Infos</h2>
+      <h2 className="text-center mb-4">Current Task Info</h2>
       {task ? (
         <Card>
-          <Card.Header as="h5">
+          <Card.Header
+            as="h5"
+            className="d-flex align-items-center justify-content-between"
+          >
             {task.title}
-            <Button
-              variant="secondary"
-              onClick={handleEditClick}
-              className="float-end"
-            >
-              Edit Task
-            </Button>
+            <div className="d-flex flex-row gap-2">
+              <Button variant="success" onClick={handleEditClick}>
+                Edit Task
+              </Button>
+              <Button variant="danger" onClick={handleDeleteClick}>
+                Delete Task
+              </Button>
+            </div>
           </Card.Header>
           <Card.Body>
             <div className="row">
@@ -66,10 +79,13 @@ const ViewTask = () => {
                 <h4>Assigned Users:</h4>
                 <ListGroup>
                   {task?.assign_users?.map((user) => (
-                    <ListGroup.Item key={user.id}>{user.name}</ListGroup.Item>
+                    <ListGroup.Item key={user.id}>
+                      {user.name}{" "}
+                      {user.id === session?.personal?.id && `(You)`}
+                    </ListGroup.Item>
                   ))}
                 </ListGroup>
-                {task.attachment && (
+                {/* {task.attachment && (
                   <Button
                     variant="info"
                     href={task.attachment}
@@ -77,7 +93,7 @@ const ViewTask = () => {
                   >
                     Download Attachments
                   </Button>
-                )}
+                )} */}
               </div>
             </div>
             <Card.Text className="mt-3">

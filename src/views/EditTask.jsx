@@ -80,7 +80,7 @@ const EditTask = () => {
         .filter((user) => user.id !== session?.personal?.id)
         .map((user) => ({
           value: user.id,
-          label: user.name,
+          label: `${user.name} - (${user.email})`,
         }));
       setUsers(userOptions);
     } catch (error) {
@@ -249,6 +249,7 @@ const EditTask = () => {
             value={data.category}
             onChange={handleCategoryChange}
             onCreateOption={handleCreateCategory}
+            placeholder="Select or create a category"
           />
         </div>
       </div>
@@ -299,21 +300,21 @@ const EditTask = () => {
           />
         </div>
       </div>
-      <div className="row">
-        <div className="col-sm-6 col-md-4 mb-3">
-          <label htmlFor="assign_users" className="form-label">
-            Assign Users
-          </label>
-          <CreatableSelect
-            id="assign_users"
-            name="assign_users"
-            isMulti
-            options={users}
-            value={data.assign_users}
-            onChange={handleAssignUsersChange}
-          />
-        </div>
-        <div className="col-sm-6 col-md-8 mb-3">
+      <div className="row mb-3">
+        {/* <div className="col-sm-6 col-md-4 mb-3"> */}
+        <label htmlFor="assign_users" className="form-label">
+          Assign Users
+        </label>
+        <CreatableSelect
+          id="assign_users"
+          name="assign_users"
+          isMulti
+          options={users}
+          value={data.assign_users}
+          onChange={handleAssignUsersChange}
+        />
+        {/* </div> */}
+        {/* <div className="col-sm-6 col-md-8 mb-3">
           <label htmlFor="attachment" className="form-label">
             Attachment
           </label>
@@ -334,7 +335,7 @@ const EditTask = () => {
               Current: {data?.attachment}
             </span>
           )}
-        </div>
+        </div> */}
       </div>
       <div className="mb-3">
         <label htmlFor="description" className="form-label">
@@ -355,6 +356,15 @@ const EditTask = () => {
         onClick={handleUpdateClick}
       >
         Update
+      </button>
+      <button
+        type="button"
+        className="ms-2 btn btn-danger"
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        Cancel
       </button>
       <div className="my-3" id="error" style={{ display: "none" }}></div>
     </div>
