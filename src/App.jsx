@@ -7,6 +7,7 @@ import Register from "./auth/Register";
 import Login from "./auth/Login";
 import AddNewTask from "./views/AddNewTask";
 import EditTask from "./views/EditTask";
+import ViewTask from "./views/ViewTask";
 
 function App() {
   return (
@@ -50,6 +51,14 @@ function App() {
             element={
               <Layout>
                 <EditTask />
+              </Layout>
+            }
+          />
+          <Route
+            path="/viewTask/:task_id"
+            element={
+              <Layout>
+                <ViewTask />
               </Layout>
             }
           />
