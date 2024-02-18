@@ -25,7 +25,7 @@ function App() {
           <Route
             path="/dashboard"
             element={
-              <Layout auth>
+              <Layout>
                 <Home />
               </Layout>
             }

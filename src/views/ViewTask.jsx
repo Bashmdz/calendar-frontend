@@ -1,17 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, Card, ListGroup } from "react-bootstrap";
 import { CONSTANT } from "../CONSTANT";
+import UserData from "../contexts/UserData";
 
 const ViewTask = () => {
+  let { session } = useContext(UserData);
   const { task_id } = useParams();
   const navigate = useNavigate();
   const [task, setTask] = useState(null);
 
   useEffect(() => {
-    fetchTaskDetails();
-  }, []);
+    if (session?.isLoggedIn) {
+      if (!task_id || isNaN(task_id)) {
+        navigate("/dashboard");
+      } else {
+        fetchTaskDetails();
+      }
+    }
+  }, [session, task_id]);
 
   const fetchTaskDetails = async () => {
     try {
