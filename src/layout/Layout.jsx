@@ -3,9 +3,10 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import UserData from "../contexts/UserData";
 import { checkIsLoggedIn } from "../CONSTANT";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 export default function Layout(props) {
   let navigate = useNavigate();
+  let location = useLocation();
   // ------------------
   // SESSION - END
   // ------------------
@@ -28,7 +29,7 @@ export default function Layout(props) {
         isLoggedIn: true,
       });
     }
-  }, []);
+  }, [location]);
 
   const value = { session, setSession };
   // ------------------
@@ -43,7 +44,7 @@ export default function Layout(props) {
 
   const logout = async () => {
     sessionStorage.removeItem("loggedin");
-    props.setSession(props.__init_session);
+    setSession(__init_session);
     navigate("/signin");
   };
 

@@ -23,9 +23,11 @@ const AddNewTask = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetchCategories();
-    fetchUsers();
-  }, []);
+    if (session?.isLoggedIn) {
+      fetchCategories();
+      fetchUsers();
+    }
+  }, [session]);
 
   const fetchCategories = async () => {
     try {

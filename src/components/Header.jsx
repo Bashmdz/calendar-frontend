@@ -1,12 +1,25 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ListItem = (props) => {
+  if (props?.to) {
+    return (
+      <li className="nav-item">
+        <Link className="nav-link" aria-current="page" to={props?.to || "/"}>
+          {props?.label}
+        </Link>
+      </li>
+    );
+  }
   return (
     <li className="nav-item">
-      <Link className="nav-link" aria-current="page" to={props?.to || "/"}>
+      <span
+        className="text-danger nav-link"
+        role="button"
+        onClick={props?.onClick}
+      >
         {props?.label}
-      </Link>
+      </span>
     </li>
   );
 };
@@ -36,8 +49,12 @@ const Header = (props) => {
           <ul className="navbar-nav">
             {props?.isLoggedIn ? (
               <>
-                <ListItem label={props?.personal?.name} to="/register" />
-                <ListItem label="Logout" to="/signin" />
+                <li className="nav-item d-flex align-items-center justify-content-center me-3">
+                  <p className="text-muted m-0 p-0">
+                    Signed in as <b>{props?.personal?.name}</b>
+                  </p>
+                </li>
+                <ListItem label="Logout" onClick={props?.logout} />
               </>
             ) : (
               <>
