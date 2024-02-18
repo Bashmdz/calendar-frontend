@@ -28,9 +28,9 @@ const EditTask = () => {
       if (!task_id || isNaN(task_id)) {
         navigate("/dashboard");
       } else {
-        fetchTaskDetails();
         fetchCategories();
         fetchUsers();
+        fetchTaskDetails();
       }
     }
   }, [session, task_id]);
@@ -39,8 +39,15 @@ const EditTask = () => {
     try {
       const response = await axios.get(CONSTANT.server + `api/task/${task_id}`);
       const taskDetails = response.data;
-      setData(taskDetails);
+      setData({
+        ...taskDetails,
+        category: {
+          value: taskDetails.category?.id,
+          label: taskDetails.category?.name,
+        },
+      });
     } catch (error) {
+      navigate("/dashboard");
       console.error(error);
     }
   };
