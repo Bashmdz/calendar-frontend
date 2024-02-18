@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Button, Card, ListGroup } from "react-bootstrap";
+import { CONSTANT } from "../CONSTANT";
 
 const ViewTask = () => {
   const { task_id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [task, setTask] = useState(null);
 
   useEffect(() => {
@@ -13,7 +15,7 @@ const ViewTask = () => {
 
   const fetchTaskDetails = async () => {
     try {
-      const response = await axios.get(`/api/task/${task_id}`);
+      const response = await axios.get(CONSTANT.server + `api/task/${task_id}`);
       setTask(response.data);
     } catch (error) {
       console.error(error);
@@ -21,44 +23,64 @@ const ViewTask = () => {
   };
 
   const handleEditClick = () => {
-    history.push(`/editTask/${task_id}`);
+    navigate(`/editTask/${task_id}`);
   };
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center mb-4">View Task</h2>
+      <h2 className="text-center mb-4">Current Task Infos</h2>
       {task ? (
-        <div className="row">
-          <div className="col-md-6">
-            <h4>Title: {task.title}</h4>
-            <p>Priority: {task.priority}</p>
-            <p>Progress: {task.progress}</p>
-            <p>Start Date: {task.startDate}</p>
-            <p>End Date: {task.endDate}</p>
-            <p>Category: {task.category?.name}</p>
-            <p>Description: {task.description}</p>
-          </div>
-          <div className="col-md-6">
-            <h4>Assigned Users:</h4>
-            <ul>
-              {task.assign_users.map((user) => (
-                <li key={user.id}>{user.name}</li>
-              ))}
-            </ul>
-            {task.attachment && (
-              <div>
-                <h4>Attachment:</h4>
-                <p>{task.attachment}</p>
+        <Card>
+          <Card.Header as="h5">
+            {task.title}
+            <Button
+              variant="secondary"
+              onClick={handleEditClick}
+              className="float-end"
+            >
+              Edit Task
+            </Button>
+          </Card.Header>
+          <Card.Body>
+            <div className="row">
+              <div className="col-md-6">
+                <ListGroup variant="flush">
+                  <ListGroup.Item>Priority: {task.priority}</ListGroup.Item>
+                  <ListGroup.Item>Progress: {task.progress}</ListGroup.Item>
+                  <ListGroup.Item>
+                    Category: {task.category?.name}
+                  </ListGroup.Item>
+                  <ListGroup.Item>Start Date: {task.startDate}</ListGroup.Item>
+                  <ListGroup.Item>End Date: {task.endDate}</ListGroup.Item>
+                </ListGroup>
               </div>
-            )}
-          </div>
-        </div>
+              <div className="col-md-6">
+                <h4>Assigned Users:</h4>
+                <ListGroup>
+                  {task?.assign_users?.map((user) => (
+                    <ListGroup.Item key={user.id}>{user.name}</ListGroup.Item>
+                  ))}
+                </ListGroup>
+                {task.attachment && (
+                  <Button
+                    variant="info"
+                    href={task.attachment}
+                    className="mt-3"
+                  >
+                    Download Attachments
+                  </Button>
+                )}
+              </div>
+            </div>
+            <Card.Text className="mt-3">
+              <h4>Description</h4>
+              {task.description}
+            </Card.Text>
+          </Card.Body>
+        </Card>
       ) : (
         <p>Loading task details...</p>
       )}
-      <button className="btn btn-primary" onClick={handleEditClick}>
-        Edit Task
-      </button>
     </div>
   );
 };
