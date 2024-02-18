@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { CONSTANT } from "../CONSTANT";
+import { CONSTANT, setMessage, resetMessage } from "../CONSTANT";
 
 const AddNewTask = () => {
   const [data, setData] = useState({
@@ -15,7 +15,6 @@ const AddNewTask = () => {
   });
   const [categories, setCategories] = useState([]);
   const [attachment, setAttachment] = useState(null);
-  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     fetchCategories();
@@ -43,6 +42,7 @@ const AddNewTask = () => {
   };
 
   const validateForm = () => {
+    resetMessage();
     let allGood = true;
 
     if (!data.title) {
@@ -202,7 +202,7 @@ const AddNewTask = () => {
           onChange={handleFileChange}
         />
         {attachment && (
-          <span className="text-success">File uploaded successfully</span>
+          <span className="text-success d-block mt-2">File uploaded successfully</span>
         )}
       </div>
       <div className="mb-3">
@@ -225,6 +225,7 @@ const AddNewTask = () => {
       >
         Add
       </button>
+      <div className="my-3" id="error" style={{ display: "none" }}></div>
     </div>
   );
 };
