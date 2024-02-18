@@ -42,7 +42,7 @@ const Login = () => {
 
     if (allGood) {
       await axios
-        .post(CONSTANT.server + "authentication/user", payload)
+        .post(CONSTANT.server + "authentication/validate", payload)
         .then((response) => {
           if (response.data) {
             let res = response.data;
