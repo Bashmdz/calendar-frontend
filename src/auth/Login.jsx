@@ -6,6 +6,7 @@ import {
   setMessage,
   resetMessage,
   checkLoginFromLogin,
+  getErrorMessage,
 } from "../CONSTANT";
 
 const Login = () => {
@@ -47,7 +48,7 @@ const Login = () => {
           if (response.data) {
             let res = response.data;
             if (res.message) {
-              setMessage(getErrorMessage(res.message), "danger");
+              setMessage(res.message, "danger");
             } else {
               sessionStorage.setItem(
                 "loggedin",

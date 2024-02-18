@@ -57,7 +57,7 @@ const Register = () => {
           if (responce.data) {
             let res = responce.data;
             if (res.message) {
-              setMessage(getErrorMessage(res.message), "danger");
+              setMessage(res.message, "danger");
             } else {
               sessionStorage.setItem(
                 "loggedin",
