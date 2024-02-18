@@ -1,8 +1,170 @@
-# React + Vite
+# CalenTask
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![CalenTask-responsiveness](readme-assets/am-i-responsive.png)
 
-Currently, two official plugins are available:
+## Table of Contents
+- [Introduction](#introduction)
+- [Wireframes](#wireframes)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Acknowledgments](#acknowledgments)
+- [Testing](#testing)
+- [Screenshots](#screenshots)
+- [Pages](#pages)
+- [Deployment](#deployment)
+- [CONSTANT.js](#constantjs)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Introduction
+
+CalenTask is a Task Management System designed to help users organize and track their tasks efficiently. It allows users to register, create tasks, assign them to other users, and monitor their progress through an intuitive calendar interface.
+
+## Wireframes
+
+### Home
+
+![Home Wireframe](readme-assets/wireframe-home.jpg)<br>
+Short description: Wireframe for the home page of CalenTask.
+
+### Dashboard
+
+![Dashboard Wireframe](readme-assets/wireframe-dashboard.jpg)<br>
+Short description: Wireframe for the dashboard page of CalenTask, displaying a calendar view of tasks.
+
+### Add New Task
+
+![Add New Task Wireframe](readme-assets/wireframe-addtask.jpg)<br>
+Short description: Wireframe for the add new task page of CalenTask, allowing users to create a new task.
+
+### Edit Task
+
+![Edit Task Wireframe](readme-assets/wireframe-edittask.jpg)<br>
+Short description: Wireframe for the edit task page of CalenTask, enabling users to modify task details.
+
+### View Task
+
+![View Task Wireframe](readme-assets/wireframe-viewtask.jpg)<br>
+Short description: Wireframe for the view task page of CalenTask, displaying detailed information about a task.
+
+## Features
+
+- **Task Management**: Create, edit, and delete tasks with ease.
+- **Priority Levels**: Assign priority levels to tasks (Important, Medium, Low).
+- **Categorization**: Categorize tasks for better organization.
+- **Progress Tracking**: Monitor task progress (Open, In Progress, Done) at a glance.
+- **Date Management**: Set start and end dates for tasks.
+- **Attachments**: Attach files to tasks for additional context or reference.
+- **Calendar View**: View tasks on a calendar, with options for daily, weekly, monthly, and agenda views.
+- **User Assignment**: Assign tasks to other users for collaboration.
+
+## Technologies Used
+
+- **Backend**: Django (Python)
+- **Frontend**: Bootstrap (HTML/CSS/JS), React (JavaScript)
+- **Calendar Component**: [react-big-calendar](https://www.npmjs.com/package/react-big-calendar)
+- **Testing**: Placeholder for testing section
+
+## Installation
+
+1. Clone the repository.
+2. Before running the project, go to `CONSTANT.js` and update the URLs in the `CONSTANT` object.
+3. Install backend dependencies using `pip install -r requirements.txt`.
+4. Install frontend dependencies using `npm install`.
+5. Start the development server for the backend using `python manage.py runserver`.
+6. Start the development server for the frontend using `npm start`.
+
+## Configuration
+
+- Configure the database settings in `settings.py` according to your environment (e.g., PostgreSQL, MySQL).
+- Customize frontend UI components in the `src/components` directory.
+- Configure user authentication and permissions as needed.
+
+## Usage
+
+1. Register or login to your CalenTask account.
+2. Create tasks by filling in the required fields and selecting options such as priority, category, and dates.
+3. Assign tasks to other users if necessary.
+4. View tasks on the calendar dashboard and navigate between different views (daily, weekly, monthly, agenda).
+5. Click on a task to view more details or to edit/delete it (only available to the task owner).
+6. Monitor task progress and update as necessary.
+
+## Acknowledgments
+
+- Inspiration from wireframes and Bootstrap UI.
+- React Big Calendar npm package for calendar functionality.
+- Copilot for code suggestions and inspiration.
+
+## Testing
+
+### Lighthouse Testing
+
+![Lighthouse Testing](readme-assets/test.png)
+
+- Description: Lighthouse is an open-source tool for auditing and improving the quality of web pages. It measures performance, accessibility, best practices, and SEO of a web application. The screenshot above shows the results of Lighthouse testing for CalenTask.
+
+## Screenshots
+
+- ![Calendar View](readme-assets/s1.png) _Calendar View showing tasks for the month._
+
+- ![Task Details](readme-assets/s2.png) _Task Details page displaying task information._
+
+- ![Edit Task](readme-assets/s3.png) _Edit Task page allowing users to modify task details._
+
+## Pages
+
+### Home Page
+
+- Screenshot: ![Home Page](readme-assets/d1.png)
+- Description: The Home page serves as the landing page for CalenTask. It provides an overview of the application and may include login/register options.
+
+### Dashboard Page
+
+- Screenshot: ![Dashboard Page](readme-assets/s1.png)
+- Description: The Dashboard page displays a calendar view of tasks, allowing users to visualize their tasks over different time periods (daily, weekly, monthly).
+
+### Profile Page
+
+- Screenshot: ![Profile Page](readme-assets/d2.png)
+- Description: The Profile page allows users to view and edit their personal information, such as username, email, and profile picture.
+
+### Add New Task Page
+
+- Screenshot: ![Add New Task Page](readme-assets/d3.png)
+- Description: The Add New Task page enables users to create a new task by providing details such as title, priority, category, start/end dates, and attachments.
+
+### Edit Task Page
+
+- Screenshot: ![Edit Task Page](readme-assets/s3.png)
+- Description: The Edit Task page allows users to modify the details of an existing task, including title, priority, category, dates, and attachments.
+
+### View Task Page
+
+- Screenshot: ![View Task Page](readme-assets/s2.png)
+- Description: The View Task page displays detailed information about a specific task, including its title, description, priority, category, dates, and attachments.
+
+## Deployment
+
+CalenTask is deployed on Heroku using Heroku PostgreSQL as the database. By default, CalenTask uses SQLite3 as the database during development.
+
+1. Create a Heroku account and install the Heroku CLI.
+2. Initialize a Git repository in your CalenTask project folder (`git init`).
+3. Log in to Heroku CLI (`heroku login`) and create a new Heroku app (`heroku create`).
+4. Set up Heroku PostgreSQL as the database (`heroku addons:create heroku-postgresql`).
+5. Push your code to the Heroku remote (`git push heroku master`).
+6. Run migrations and set up the database (`heroku run python manage.py migrate`).
+7. Your CalenTask application should now be deployed and accessible via the provided Heroku app URL.
+8. Your app should now be deployed and accessible via the provided Heroku URL.
+
+## CONSTANT.js
+
+Before running the project, go to `CONSTANT.js` and change the URLs to match your environment.
+
+```javascript
+export const CONSTANT = {
+  server: "http://127.0.0.1:8000/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
+  admin: "http://127.0.0.1:8000/admin/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
+  client: "http://localhost:5173/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
+};
+```

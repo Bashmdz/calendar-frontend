@@ -57,7 +57,7 @@ const Register = () => {
           if (responce.data) {
             let res = responce.data;
             if (res.message) {
-              setMessage(getErrorMessage(res.message), "danger");
+              setMessage("Ensure this field has at least 8 characters.", "danger");
             } else {
               sessionStorage.setItem(
                 "loggedin",

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Button, Card, ListGroup } from "react-bootstrap";
+import { Button, Card, ListGroup, Modal } from "react-bootstrap";
 import { CONSTANT } from "../CONSTANT";
 import UserData from "../contexts/UserData";
 
@@ -10,6 +10,7 @@ const ViewTask = () => {
   const { task_id } = useParams();
   const navigate = useNavigate();
   const [task, setTask] = useState(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   useEffect(() => {
     if (session?.isLoggedIn) {
@@ -34,13 +35,25 @@ const ViewTask = () => {
     navigate(`/editTask/${task_id}`);
   };
 
-  const handleDeleteClick = async () => {
+  const handleDeleteClick = () => {
+    setShowConfirmation(true);
+  };
+
+  const handleConfirmDelete = async () => {
     try {
-      await axios.delete(CONSTANT.server + `api/task/${task_id}`);
+      await axios.delete(CONSTANT.server + `api/task/${task_id}`, {
+        data: {
+          user_id: session?.personal?.id,
+        },
+      });
       navigate("/dashboard");
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirmation(false);
   };
 
   return (
@@ -80,8 +93,7 @@ const ViewTask = () => {
                 <ListGroup>
                   {task?.assign_users?.map((user) => (
                     <ListGroup.Item key={user.id}>
-                      {user.name}{" "}
-                      {user.id === session?.personal?.id && `(You)`}
+                      {user.name} {user.id === session?.personal?.id && `(You)`}
                     </ListGroup.Item>
                   ))}
                 </ListGroup>
@@ -105,6 +117,21 @@ const ViewTask = () => {
       ) : (
         <p>Loading task details...</p>
       )}
+
+      <Modal show={showConfirmation} onHide={handleCancelDelete}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this task?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCancelDelete}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleConfirmDelete}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
