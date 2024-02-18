@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { BRAND_NAME } from "../CONSTANT";
 
 const ListItem = (props) => {
   if (props?.to) {
@@ -30,6 +31,7 @@ const Header = (props) => {
       <div className="container">
         <Link className="navbar-brand" to="/">
           <img src="/logo.png" style={{ width: "45px" }} />
+          <span className="ps-2">{BRAND_NAME}</span>
         </Link>
         <button
           className="navbar-toggler"
