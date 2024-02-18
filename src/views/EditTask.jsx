@@ -45,6 +45,12 @@ const EditTask = () => {
           value: taskDetails.category?.id,
           label: taskDetails.category?.name,
         },
+        assign_users: taskDetails.assign_users
+          .filter((user) => user.id !== session?.personal?.id)
+          .map((user) => ({
+            value: user.id,
+            label: user.name,
+          })),
       });
     } catch (error) {
       navigate("/dashboard");
@@ -171,7 +177,7 @@ const EditTask = () => {
         );
 
         const response = await axios.put(
-          CONSTANT.server + "api/task",
+          CONSTANT.server + "api/task/" + task_id,
           formData,
           {
             headers: {
@@ -316,6 +322,11 @@ const EditTask = () => {
           {attachment && (
             <span className="text-success d-block mt-2">
               File uploaded successfully
+            </span>
+          )}
+          {!attachment && (
+            <span className="text-success d-block mt-2">
+              Current: {data?.attachment}
             </span>
           )}
         </div>
