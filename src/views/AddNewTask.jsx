@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CONSTANT, setMessage, resetMessage } from "../CONSTANT";
+import CreatableSelect from "react-select/creatable";
 
 const AddNewTask = () => {
   const [data, setData] = useState({
@@ -23,7 +24,11 @@ const AddNewTask = () => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(CONSTANT.server + "api/categories");
-      setCategories(response.data);
+      const categoryOptions = response.data.map((cat) => ({
+        value: cat.id,
+        label: cat.name,
+      }));
+      setCategories(categoryOptions);
     } catch (error) {
       console.error(error);
     }
@@ -127,20 +132,15 @@ const AddNewTask = () => {
           <label htmlFor="category" className="form-label">
             Category
           </label>
-          <select
+          <CreatableSelect
             className="form-select"
             id="category"
             name="category"
+            isClearable
+            options={categories}
             value={data.category}
             onChange={handleInputChange}
-            required
-          >
-            {categories?.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
+          />
         </div>
       </div>
       <div className="row">
@@ -202,7 +202,9 @@ const AddNewTask = () => {
           onChange={handleFileChange}
         />
         {attachment && (
-          <span className="text-success d-block mt-2">File uploaded successfully</span>
+          <span className="text-success d-block mt-2">
+            File uploaded successfully
+          </span>
         )}
       </div>
       <div className="mb-3">
