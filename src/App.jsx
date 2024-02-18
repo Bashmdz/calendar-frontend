@@ -3,6 +3,7 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import Home from "./views/Home";
 import Layout from "./layout/Layout";
 import "./App.css";
+import Register from "./auth/Register";
 
 function App() {
   return (
@@ -14,6 +15,14 @@ function App() {
             element={
               <Layout>
                 <Home />
+              </Layout>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <Layout>
+                <Register />
               </Layout>
             }
           />
