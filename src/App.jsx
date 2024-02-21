@@ -11,6 +11,7 @@ import ViewTask from "./views/ViewTask";
 import Dashboard from "./views/Dashboard";
 import Profile from "./views/Profile";
 import TakeMeToAdmin from "./components/TakeMeToAdmin";
+import NotFound from "./views/NotFound"; // Import NotFound component
 
 function App() {
   return (
@@ -83,6 +84,7 @@ function App() {
           />
           <Route path="/admin" element={<TakeMeToAdmin />} />
           <Route path="/admin/" element={<TakeMeToAdmin />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </div>
