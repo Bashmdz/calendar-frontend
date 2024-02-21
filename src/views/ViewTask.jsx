@@ -6,7 +6,7 @@ import { CONSTANT } from "../CONSTANT";
 import UserData from "../contexts/UserData";
 
 const ViewTask = () => {
-  let { session } = useContext(UserData);
+  let { session, setToast } = useContext(UserData);
   const { task_id } = useParams();
   const navigate = useNavigate();
   const [task, setTask] = useState(null);
@@ -46,7 +46,15 @@ const ViewTask = () => {
           user_id: session?.personal?.id,
         },
       });
-      navigate("/dashboard");
+      setShowConfirmation(false);
+      setToast({
+        show: true,
+        text: "Task deleted successfully!",
+        type: "success",
+      });
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
     } catch (error) {
       console.error(error);
     }

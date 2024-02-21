@@ -4,6 +4,11 @@ body {
 
 @media (max-width: 576px) {
   .__HOME__BOX__ {
-    width: 100%!important;
+    width: 100% !important;
   }
+}
+
+.toast-css {
+  right: 0 !important;
+  left: auto !important;
 }

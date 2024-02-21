@@ -11,7 +11,7 @@ import FilterIcon from "./../assets/icons/FilterIcon";
 const localizer = momentLocalizer(moment);
 
 const Dashboard = () => {
-  let { session } = useContext(UserData);
+  let { session, setToast } = useContext(UserData);
   const [displayTasks, setDisplayTasks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({
@@ -92,6 +92,10 @@ const Dashboard = () => {
     };
   };
 
+  useEffect(() => {
+    setToast({ show: true, text: "", type: "" });
+  }, []);
+
   return (
     <div className="container mt-5">
       <button
@@ -103,7 +107,7 @@ const Dashboard = () => {
       <div className="mb-4 d-flex justify-content-center align-items-center flex-row gap-2">
         <input
           type="text"
-          placeholder="Search Tasks"
+          placeholder="Search Tasks This Month"
           value={searchTerm}
           onChange={handleSearch}
           className="form-control"

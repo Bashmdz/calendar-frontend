@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import UserData from "../contexts/UserData";
 
 const EditTask = () => {
-  let { session } = useContext(UserData);
+  let { session, setToast } = useContext(UserData);
   let navigate = useNavigate();
   let { task_id } = useParams();
   const [data, setData] = useState({
@@ -191,7 +191,12 @@ const EditTask = () => {
           }
         );
         console.log(response.data);
-        setMessage("Task updated successfully!", "success");
+        // setMessage("Task updated successfully!", "success");
+        setToast({
+          show: true,
+          text: "Task updated successfully!",
+          type: "success",
+        });
         setTimeout(() => {
           navigate("/dashboard");
         }, 2000);
@@ -303,12 +308,13 @@ const EditTask = () => {
       <div className="row mb-3">
         {/* <div className="col-sm-6 col-md-4 mb-3"> */}
         <label htmlFor="assign_users" className="form-label">
-          Assign Users
+          Update additional users
         </label>
         <CreatableSelect
           id="assign_users"
           name="assign_users"
           isMulti
+          placeholder="Select users"
           options={users}
           value={data.assign_users}
           onChange={handleAssignUsersChange}

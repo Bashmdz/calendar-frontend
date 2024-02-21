@@ -10,6 +10,7 @@ const UserData = React.createContext({
     isLoggedIn: false,
   },
   setSession: () => {},
+  setToast: () => {},
 });
 
 export default UserData;

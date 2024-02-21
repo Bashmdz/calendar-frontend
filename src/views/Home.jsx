@@ -5,17 +5,14 @@ import { BRAND_NAME } from "./../CONSTANT";
 const Home = () => {
   return (
     <div
-      className="d-flex align-items-center  justify-content-center "
+      className="d-flex align-items-center justify-content-center"
       style={{
-        backgroundImage:
-          "url(https://c0.wallpaperflare.com/preview/17/490/484/paper-business-document-office.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundColor: "#636365",
         padding: "20px",
         height: "calc(100vh - 8rem)",
       }}
     >
-      <Container className="d-flex justify-content-center  align-items-center ">
+      <Container className="d-flex justify-content-center align-items-center">
         <div className="bg-white p-5 rounded-3 w-50 __HOME__BOX__">
           <h1 className="text-center mb-4 display-4">
             Welcome to {BRAND_NAME}

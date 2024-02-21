@@ -4,7 +4,7 @@
 
 ## Table of Contents
 
-- [Introduction](#introduction)
+- [Introduction and Project Goals](#introduction-and-project-goals)
 - [Wireframes](#wireframes)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
@@ -18,7 +18,7 @@
 - [Deployment](#deployment)
 - [CONSTANT.js](#constantjs)
 
-## Introduction
+## Introduction and Project Goals
 
 CalenTask is a Task Management System designed to help users organize and track their tasks efficiently. It allows users to register, create tasks, assign them to other users, and monitor their progress through an intuitive calendar interface.
 
