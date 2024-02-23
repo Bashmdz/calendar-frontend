@@ -20,7 +20,7 @@ const EditTask = () => {
     assign_users: [],
   });
   const [categories, setCategories] = useState([]);
-  const [attachment, setAttachment] = useState(null);
+  const [attachment] = useState(null);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -127,10 +127,6 @@ const EditTask = () => {
     }));
   };
 
-  const handleFileChange = (e) => {
-    setAttachment(e.target.files[0]);
-  };
-
   const validateForm = () => {
     resetMessage();
     let allGood = true;
@@ -175,21 +171,12 @@ const EditTask = () => {
           "assign_users",
           JSON.stringify([
             session?.personal?.id,
-            ...data.assign_users?.map((a, b) => {
+            ...data.assign_users?.map((a) => {
               return a.value;
             }),
           ])
         );
 
-        const response = await axios.put(
-          CONSTANT.server + "api/task/" + task_id,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
         console.log(response.data);
         // setMessage("Task updated successfully!", "success");
         setToast({

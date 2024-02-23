@@ -18,6 +18,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
+          {/* Home */}
           <Route
             path="/"
             element={
@@ -26,6 +27,8 @@ function App() {
               </Layout>
             }
           />
+
+          {/* Dashboard */}
           <Route
             path="/dashboard"
             element={
@@ -34,6 +37,8 @@ function App() {
               </Layout>
             }
           />
+
+          {/* Profile */}
           <Route
             path="/profile"
             element={
@@ -42,6 +47,8 @@ function App() {
               </Layout>
             }
           />
+
+          {/* Add New Task */}
           <Route
             path="/addNewTask"
             element={
@@ -50,6 +57,8 @@ function App() {
               </Layout>
             }
           />
+
+          {/* Edit Task */}
           <Route
             path="/editTask/:task_id"
             element={
@@ -58,6 +67,8 @@ function App() {
               </Layout>
             }
           />
+
+          {/* View Task */}
           <Route
             path="/viewTask/:task_id"
             element={
@@ -66,6 +77,8 @@ function App() {
               </Layout>
             }
           />
+
+          {/* Register */}
           <Route
             path="/register"
             element={
@@ -74,6 +87,8 @@ function App() {
               </Layout>
             }
           />
+
+          {/* Login */}
           <Route
             path="/signin"
             element={
@@ -82,8 +97,12 @@ function App() {
               </Layout>
             }
           />
+
+          {/* Admin */}
           <Route path="/admin" element={<TakeMeToAdmin />} />
           <Route path="/admin/" element={<TakeMeToAdmin />} />
+
+          {/* Not Found */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

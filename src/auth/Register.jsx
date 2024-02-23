@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   CONSTANT,
@@ -11,23 +11,29 @@ import {
 
 const Register = () => {
   const navigate = useNavigate();
+
   useEffect(() => {
+    // Redirect to dashboard if user is already logged in
     if (checkIsLoggedIn()) {
       navigate("/dashboard");
     }
   }, []);
-  const init__payload = {
+
+  const initPayload = {
     name: "",
     password: "",
     email: "",
   };
-  const [payload, setPayload] = useState(init__payload);
+
+  const [payload, setPayload] = useState(initPayload);
+
   const changePayload = (e) => {
     setPayload({
       ...payload,
       [e.target.name]: e.target.value,
     });
   };
+
   const register = async (e) => {
     e.target.style.pointerEvents = "none";
     e.target.innerHTML =
@@ -52,32 +58,33 @@ const Register = () => {
     }
 
     if (allGood) {
-      await axios
-        .post(CONSTANT.server + "authentication/user", payload)
-        .then((responce) => {
-          if (responce.data) {
-            let res = responce.data;
-            if (res.message) {
-              setMessage(getErrorMessage(res?.message), "danger");
-            } else {
-              sessionStorage.setItem(
-                "loggedin",
-                JSON.stringify({
-                  data: res,
-                })
-              );
-              navigate("/dashboard");
-            }
-          }
-        })
-        .catch((error) => {
-          setMessage("System error!", "danger");
-          console.log(error);
-        });
+      try {
+        const response = await axios.post(
+          CONSTANT.server + "authentication/user",
+          payload
+        );
+        const res = response.data;
+        if (res.message) {
+          setMessage(getErrorMessage(res?.message), "danger");
+        } else {
+          sessionStorage.setItem(
+            "loggedin",
+            JSON.stringify({
+              data: res,
+            })
+          );
+          navigate("/dashboard");
+        }
+      } catch (error) {
+        setMessage("System error!", "danger");
+        console.log(error);
+      }
     }
+
     e.target.style.pointerEvents = "unset";
     e.target.innerHTML = "Register";
   };
+
   return (
     <main className="d-flex justify-content-center align-items-center">
       <div className="w-50">

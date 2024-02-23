@@ -10,8 +10,10 @@ export default function Profile() {
         <div className="col-md-6">
           <div className=" p-3">
             <div className="">
+              {/* Profile heading */}
               <h2 className="text-center mb-4">My Profile</h2>
               <div className="mb-3 mt-4">
+                {/* Name input */}
                 <label className="form-label">Name</label>
                 <input
                   type="text"
@@ -21,6 +23,7 @@ export default function Profile() {
                 />
               </div>
               <div className="mb-3">
+                {/* Email input */}
                 <label className="form-label">Email</label>
                 <input
                   type="email"

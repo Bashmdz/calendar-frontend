@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { CONSTANT } from "../CONSTANT";
 import UserData from "../contexts/UserData";
-import FilterIcon from "./../assets/icons/FilterIcon";
 
 const localizer = momentLocalizer(moment);
 
 const Dashboard = () => {
-  let { session, setToast } = useContext(UserData);
+  let { session } = useContext(UserData);
   const [displayTasks, setDisplayTasks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({
@@ -37,7 +36,7 @@ const Dashboard = () => {
       const response = await axios.get(
         CONSTANT.server + "api/tasks/" + session?.personal?.id
       );
-      const result = response.data?.map((a, b) => {
+      const result = response.data?.map((a) => {
         return a?.task;
       });
       const sortedTasks = result.sort(
@@ -71,7 +70,7 @@ const Dashboard = () => {
     }));
   };
 
-  const eventStyleGetter = (event, start, end, isSelected) => {
+  const eventStyleGetter = (event) => {
     let newStyle = {
       backgroundColor: "lightgrey",
       color: "black",
@@ -93,6 +92,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    // Reset toast
     setToast({ show: true, text: "", type: "" });
   }, []);
 

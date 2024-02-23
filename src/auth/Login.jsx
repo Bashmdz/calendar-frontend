@@ -1,32 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   CONSTANT,
   setMessage,
   resetMessage,
   checkIsLoggedIn,
-  getErrorMessage,
 } from "../CONSTANT";
 
 const Login = () => {
   const navigate = useNavigate();
+
   useEffect(() => {
+    // Check if user is already logged in
     if (checkIsLoggedIn()) {
       navigate("/dashboard");
     }
   }, []);
+
   const initialPayload = {
     email: "",
     password: "",
   };
   const [payload, setPayload] = useState(initialPayload);
+
   const handleChange = (e) => {
+    // Update payload state when input values change
     setPayload({
       ...payload,
       [e.target.name]: e.target.value,
     });
   };
+
   const handleLogin = async (e) => {
     e.target.style.pointerEvents = "none";
     e.target.innerHTML =
@@ -42,32 +47,35 @@ const Login = () => {
     }
 
     if (allGood) {
-      await axios
-        .post(CONSTANT.server + "authentication/validate", payload)
-        .then((response) => {
-          if (response.data) {
-            let res = response.data;
-            if (res.message) {
-              setMessage(res.message, "danger");
-            } else {
-              sessionStorage.setItem(
-                "loggedin",
-                JSON.stringify({
-                  data: res,
-                })
-              );
-              navigate("/dashboard");
-            }
+      try {
+        const response = await axios.post(
+          CONSTANT.server + "authentication/validate",
+          payload
+        );
+        if (response.data) {
+          let res = response.data;
+          if (res.message) {
+            setMessage(res.message, "danger");
+          } else {
+            sessionStorage.setItem(
+              "loggedin",
+              JSON.stringify({
+                data: res,
+              })
+            );
+            navigate("/dashboard");
           }
-        })
-        .catch((error) => {
-          setMessage("System error!", "danger");
-          console.log(error);
-        });
+        }
+      } catch (error) {
+        setMessage("System error!", "danger");
+        console.log(error);
+      }
     }
+
     e.target.style.pointerEvents = "unset";
     e.target.innerHTML = "Login";
   };
+
   return (
     <main className="d-flex justify-content-center align-items-center">
       <div className="w-50">

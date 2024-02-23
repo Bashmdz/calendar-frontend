@@ -1,17 +1,14 @@
+// Constants for server and client URLs
 export const CONSTANT = {
   server: "https://calender-app-bashar-e84fae186fa8.herokuapp.com/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
   admin: "https://calender-app-bashar-e84fae186fa8.herokuapp.com/admin/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
   client: "http://localhost:5173/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END).
 };
 
-// export const CONSTANT = {
-//   server: "http://127.0.0.1:8000/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
-//   admin: "http://127.0.0.1:8000/admin/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
-//   client: "http://localhost:5173/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
-// };
-
+// Brand name constant
 export const BRAND_NAME = "CalenTask";
 
+// Check if user is logged in
 export const checkIsLoggedIn = () => {
   return sessionStorage.getItem("loggedin") &&
     JSON.parse(sessionStorage.getItem("loggedin")).data
@@ -19,6 +16,7 @@ export const checkIsLoggedIn = () => {
     : false;
 };
 
+// Generate error message
 export const getErrorMessage = (message) => {
   let toReturn = "";
   for (const key in message) {
@@ -29,6 +27,7 @@ export const getErrorMessage = (message) => {
   return toReturn;
 };
 
+// Set error message
 export const setMessage = (text, color) => {
   let error = document.getElementById("error");
   error.innerHTML = text;
@@ -36,6 +35,7 @@ export const setMessage = (text, color) => {
   error.style.display = "block";
 };
 
+// Reset error message
 export const resetMessage = () => {
   let error = document.getElementById("error");
   error.innerText = "";
@@ -44,6 +44,7 @@ export const resetMessage = () => {
   error.classList.remove("text-success");
 };
 
+// Check if error message is displayed
 export const isMessage = () => {
   let error = document.getElementById("error");
   if (error.style.display === "none") {
@@ -52,6 +53,7 @@ export const isMessage = () => {
   return true;
 };
 
+// Capitalize the first letter of a string
 export const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };

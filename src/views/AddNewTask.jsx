@@ -98,9 +98,6 @@ const AddNewTask = () => {
     }));
   };
 
-  const handleFileChange = (e) => {
-    setAttachment(e.target.files[0]);
-  };
 
   const validateForm = () => {
     resetMessage();
@@ -147,7 +144,7 @@ const AddNewTask = () => {
           "assign_users",
           JSON.stringify([
             session?.personal?.id,
-            ...data.assign_users?.map((a, b) => {
+            ...data.assign_users?.map((a) => {
               return a.value;
             }),
           ])
@@ -168,7 +165,6 @@ const AddNewTask = () => {
           text: "Task created successfully!",
           type: "success",
         });
-        // setMessage("Task created successfully!", "success");
         setTimeout(() => {
           navigate("/dashboard");
         }, 2000);

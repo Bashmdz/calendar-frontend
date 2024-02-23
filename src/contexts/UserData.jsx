@@ -1,16 +1,17 @@
 import React from "react";
 
+// Create a context for user data
 const UserData = React.createContext({
   session: {
     personal: {
-      id: "",
-      email: "",
-      name: "",
+      id: "", // User ID
+      email: "", // User email
+      name: "", // User name
     },
-    isLoggedIn: false,
+    isLoggedIn: false, // User login status
   },
-  setSession: () => {},
-  setToast: () => {},
+  setSession: () => {}, // Function to set user session
+  setToast: () => {}, // Function to set toast message
 });
 
 export default UserData;

@@ -17,6 +17,8 @@
 - [Pages](#pages)
 - [Deployment](#deployment)
 - [CONSTANT.js](#constantjs)
+- [Future Functionalities](#future-functionalities)
+  - [Logs](#logs)
 
 ## Introduction and Project Goals
 
@@ -161,3 +163,17 @@ CalenTask is deployed on Heroku using Node.js. As React has static files, the "s
 10. Deploy your app to Heroku (`git push heroku master`).
 11. Your CalenTask application should now be deployed and accessible via the provided Heroku app URL.
 12. Your app should now be deployed and accessible via the provided Heroku URL.
+
+## Future Functionalities
+
+### Logs
+
+In the current implementation, the system saves logs for the creation, updation, and deletion of tasks. However, there is no interaction functionality for users to view these logs or receive notifications.
+
+A future functionality to be added is the ability for users to interact with the logs. This can include features such as:
+
+- Viewing a log history for each task, displaying the date and time of each action.
+- Notifying users when a task they are assigned to has been modified or deleted.
+- Providing a notification center where users can view all their notifications.
+
+Implementing these functionalities will enhance the user experience and improve the overall usability of the CalenTask Task Management System.

@@ -4,6 +4,7 @@ import { BRAND_NAME } from "./../CONSTANT";
 
 const Home = () => {
   return (
+    // Container for the home page
     <div
       className="d-flex align-items-center justify-content-center"
       style={{

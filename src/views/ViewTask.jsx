@@ -6,17 +6,28 @@ import { CONSTANT } from "../CONSTANT";
 import UserData from "../contexts/UserData";
 
 const ViewTask = () => {
+  // Get session and setToast from UserData context
   let { session, setToast } = useContext(UserData);
+
+  // Get task_id from URL params
   const { task_id } = useParams();
+
+  // Initialize navigate function from react-router-dom
   const navigate = useNavigate();
+
+  // Initialize task and showConfirmation state variables
   const [task, setTask] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   useEffect(() => {
+    // Check if user is logged in
     if (session?.isLoggedIn) {
+      // Check if task_id is valid
       if (!task_id || isNaN(task_id)) {
+        // Redirect to dashboard if task_id is invalid
         navigate("/dashboard");
       } else {
+        // Fetch task details if task_id is valid
         fetchTaskDetails();
       }
     }
@@ -24,6 +35,7 @@ const ViewTask = () => {
 
   const fetchTaskDetails = async () => {
     try {
+      // Fetch task details from server
       const response = await axios.get(CONSTANT.server + `api/task/${task_id}`);
       setTask(response.data);
     } catch (error) {
@@ -32,26 +44,31 @@ const ViewTask = () => {
   };
 
   const handleEditClick = () => {
+    // Navigate to editTask page with task_id
     navigate(`/editTask/${task_id}`);
   };
 
   const handleDeleteClick = () => {
+    // Show confirmation modal for task deletion
     setShowConfirmation(true);
   };
 
   const handleConfirmDelete = async () => {
     try {
+      // Send delete request to server to delete task
       await axios.delete(CONSTANT.server + `api/task/${task_id}`, {
         data: {
           user_id: session?.personal?.id,
         },
       });
       setShowConfirmation(false);
+      // Show success toast message
       setToast({
         show: true,
         text: "Task deleted successfully!",
         type: "success",
       });
+      // Redirect to dashboard after 2 seconds
       setTimeout(() => {
         navigate("/dashboard");
       }, 2000);
@@ -61,6 +78,7 @@ const ViewTask = () => {
   };
 
   const handleCancelDelete = () => {
+    // Hide confirmation modal for task deletion
     setShowConfirmation(false);
   };
 
@@ -105,15 +123,6 @@ const ViewTask = () => {
                     </ListGroup.Item>
                   ))}
                 </ListGroup>
-                {/* {task.attachment && (
-                  <Button
-                    variant="info"
-                    href={task.attachment}
-                    className="mt-3"
-                  >
-                    Download Attachments
-                  </Button>
-                )} */}
               </div>
             </div>
             <Card.Text className="mt-3">
