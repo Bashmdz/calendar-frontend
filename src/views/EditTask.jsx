@@ -177,6 +177,16 @@ const EditTask = () => {
           ])
         );
 
+        const response = await axios.put(
+          CONSTANT.server + "api/task/" + task_id,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
         console.log(response.data);
         // setMessage("Task updated successfully!", "success");
         setToast({

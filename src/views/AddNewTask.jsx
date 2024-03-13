@@ -23,6 +23,7 @@ const AddNewTask = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
+    console.log(session);
     if (session?.isLoggedIn) {
       fetchCategories();
       fetchUsers();
@@ -97,7 +98,6 @@ const AddNewTask = () => {
       assign_users: newValue || [],
     }));
   };
-
 
   const validateForm = () => {
     resetMessage();

@@ -6,11 +6,12 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { CONSTANT } from "../CONSTANT";
 import UserData from "../contexts/UserData";
+import FilterIcon from "./../assets/icons/FilterIcon";
 
 const localizer = momentLocalizer(moment);
 
 const Dashboard = () => {
-  let { session } = useContext(UserData);
+  let { session, setToast } = useContext(UserData);
   const [displayTasks, setDisplayTasks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({
@@ -80,10 +81,12 @@ const Dashboard = () => {
 
     if (event.priority === "Important") {
       newStyle.backgroundColor = "red";
+      newStyle.color = "white";
     } else if (event.priority === "Medium") {
       newStyle.backgroundColor = "yellow";
     } else if (event.priority === "Low") {
       newStyle.backgroundColor = "green";
+      newStyle.color = "white";
     }
 
     return {

@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Toast } from "react-bootstrap";
+import UserData from "../contexts/UserData";
 
 export default function Layout(props) {
   let navigate = useNavigate();
@@ -46,26 +47,29 @@ export default function Layout(props) {
     navigate("/signin");
   };
 
+  const value = { session, setSession, setToast };
+
   return (
     <>
-      {/* User Data Context Provider */}
-      <Header
-        isLoggedIn={session?.isLoggedIn}
-        logout={logout}
-        personal={session?.personal}
-      />
-      <div className="">{props.children}</div>
-      <Footer />
-      {/* Toast Notification */}
-      <Toast
-        show={toast.show}
-        onClose={() => setToast({ ...toast, show: false })}
-        delay={3000}
-        autohide
-        className={`bg-${toast.type} toast-css text-white fixed-bottom m-3`}
-      >
-        <Toast.Body>{toast.text}</Toast.Body>
-      </Toast>
+      <UserData.Provider value={value}>
+        <Header
+          isLoggedIn={session?.isLoggedIn}
+          logout={logout}
+          personal={session?.personal}
+        />
+        <div className="">{props.children}</div>
+        <Footer />
+        {/* Toast Notification */}
+        <Toast
+          show={toast.show}
+          onClose={() => setToast({ ...toast, show: false })}
+          delay={3000}
+          autohide
+          className={`bg-${toast.type} toast-css text-white fixed-bottom m-3`}
+        >
+          <Toast.Body>{toast.text}</Toast.Body>
+        </Toast>
+      </UserData.Provider>
     </>
   );
 }
