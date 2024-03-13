@@ -8,6 +8,7 @@
 - [Wireframes](#wireframes)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
+- [React Components](#react-components)
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
@@ -68,6 +69,44 @@ Short description: Wireframe for the view task page of CalenTask, displaying det
 - **Frontend**: Bootstrap (HTML/CSS/JS), React (JavaScript)
 - **Calendar Component**: [react-big-calendar](https://www.npmjs.com/package/react-big-calendar)
 - **Testing**: Placeholder for testing section
+
+## React Components
+
+### Reusable
+
+1. **Footer**: A reusable component that displays the footer section of the application.
+
+2. **Header**: A reusable component that displays the header section of the application.
+
+### Auth
+
+1. **Login**: A component that handles the login functionality, allowing users to authenticate and access their accounts.
+
+2. **Register**: A component that handles the registration functionality, allowing new users to create an account.
+
+### Contexts
+
+1. **UserData**: A context component that holds user personal information and the isLoggedIn session information.
+
+### Layouts
+
+1. **Layout**: A layout component that provides a consistent structure for rendering views.
+
+### Views
+
+1. **Home**: A view component that serves as the landing page for the application.
+
+2. **Dashboard**: A view component that allows users to search for and view tasks in a calendar format.
+
+3. **AddNewTask**: A view component that enables users to create a new task by providing relevant details.
+
+4. **ViewTasks**: A view component that displays detailed information about a specific task and provides options to update or delete it.
+
+5. **EditTask**: A view component that allows users to modify the details of an existing task.
+
+6. **Profile**: A view component that allows users to view and edit their personal information.
+
+7. **NotFound**: A view component that is displayed when a requested page is not found.
 
 ## Installation
 
