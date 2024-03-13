@@ -153,7 +153,9 @@ const EditTask = () => {
     return allGood;
   };
 
-  const handleUpdateClick = async () => {
+  const handleUpdateClick = async (e) => {
+    e.target.style.pointerEvents = "none";
+    e.target.style.opacity = ".5";
     if (validateForm()) {
       try {
         const formData = new FormData();
@@ -202,6 +204,9 @@ const EditTask = () => {
         setMessage("Failed to update task. Please try again.", "danger");
       }
     }
+
+    e.target.style.pointerEvents = "unset";
+    e.target.style.opacity = "1";
   };
 
   return (

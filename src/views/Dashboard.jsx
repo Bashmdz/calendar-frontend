@@ -96,7 +96,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     // Reset toast
-    setToast({ show: true, text: "", type: "" });
+    setToast({ show: false, text: "", type: "" });
   }, []);
 
   return (
