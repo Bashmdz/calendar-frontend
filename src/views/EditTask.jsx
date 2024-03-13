@@ -202,10 +202,11 @@ const EditTask = () => {
       } catch (error) {
         console.error(error);
         setMessage("Failed to update task. Please try again.", "danger");
+        e.target.style.pointerEvents = "unset";
       }
+    } else {
+      e.target.style.pointerEvents = "unset";
     }
-
-    e.target.style.pointerEvents = "unset";
     e.target.style.opacity = "1";
   };
 

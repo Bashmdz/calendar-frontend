@@ -162,7 +162,7 @@ const AddNewTask = () => {
             },
           }
         );
-        console.log(response.data);
+        // console.log(response.data);
         setToast({
           show: true,
           text: "Task created successfully!",
@@ -174,10 +174,11 @@ const AddNewTask = () => {
       } catch (error) {
         console.error(error);
         setMessage("Failed to create task. Please try again.", "danger");
+        e.target.style.pointerEvents = "unset";
       }
+    } else {
+      e.target.style.pointerEvents = "unset";
     }
-
-    e.target.style.pointerEvents = "unset";
     e.target.style.opacity = "1";
   };
 
