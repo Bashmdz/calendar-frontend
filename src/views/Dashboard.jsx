@@ -103,7 +103,7 @@ const Dashboard = () => {
     <div className="container mt-5">
       <button
         onClick={() => navigate("/addNewTask")}
-        className="btn btn-primary mb-4"
+        className="btn btn-primary mb-4 mx-auto d-block"
       >
         Create a new task
       </button>

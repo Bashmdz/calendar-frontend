@@ -14,7 +14,6 @@
 - [Usage](#usage)
 - [Acknowledgments](#acknowledgments)
 - [Testing](#testing)
-- [Screenshots](#screenshots)
 - [Pages](#pages)
 - [Deployment](#deployment)
 - [CONSTANT.js](#constantjs)
@@ -146,7 +145,7 @@ Short description: Wireframe for the view task page of CalenTask, displaying det
 
 - Description: Lighthouse is an open-source tool for auditing and improving the quality of web pages. It measures performance, accessibility, best practices, and SEO of a web application. The screenshot above shows the results of Lighthouse testing for CalenTask.
 
-## Screenshots
+### Manual Testing
 
 - ![Calendar View](readme-assets/s1.png) _Calendar View showing tasks for the month._
 
