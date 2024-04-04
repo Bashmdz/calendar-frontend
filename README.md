@@ -66,9 +66,17 @@ Short description: Wireframe for the view task page of CalenTask, displaying det
 ## Technologies Used
 
 - **Backend**: Django (Python)
+  - Reason: Django is a powerful and popular web framework that provides a robust backend infrastructure for building scalable and secure applications.
+
 - **Frontend**: Bootstrap (HTML/CSS/JS), React (JavaScript)
+  - Reason: Bootstrap is a widely-used CSS framework that offers a responsive and mobile-first design. React is a JavaScript library for building user interfaces, providing a component-based approach and efficient rendering.
+
 - **Calendar Component**: [react-big-calendar](https://www.npmjs.com/package/react-big-calendar)
+  - Reason: react-big-calendar is a feature-rich and customizable calendar component for React, which provides the necessary functionality for displaying and managing tasks in a calendar format.
+
 - **Testing**: Placeholder for testing section
+  - Reason: Testing is an essential part of software development to ensure the reliability and correctness of the application. Placeholder is used to indicate that the testing section is yet to be implemented.
+
 
 ## React Components
 
