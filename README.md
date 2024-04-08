@@ -16,6 +16,7 @@
 - [Usage](#usage)
 - [Acknowledgments](#acknowledgments)
 - [Testing](#testing)
+- [Test Cases](#test-cases)
 - [Pages](#pages)
 - [Deployment](#deployment)
 - [CONSTANT.js](#constantjs)
@@ -185,6 +186,48 @@ The combination of the Roboto font and the chosen color scheme creates a visuall
 - ![Task Details](readme-assets/s2.png) _Task Details page displaying task information._
 
 - ![Edit Task](readme-assets/s3.png) _Edit Task page allowing users to modify task details._
+
+## Test Cases
+
+### Case 1: _User Registration_
+
+![Registration Page](readme-assets/c1a.png)
+![Dashboard Page](readme-assets/c1b.png)
+
+### Steps:
+
+- _Click 'Add New Task'_
+- _Fill task title, end-date, description_
+- _Select priority, category, progress, additional users_
+- _Click 'Add'_
+
+### Expected Output:
+
+_Task is created successfully and redirected to homepage._
+
+### Actual Results:
+
+_Task is created successfully and redirected to homepage._
+
+### Case 2: _Creation of Task_
+
+![Add New Task Page](readme-assets/c2a.png)
+![Add New Task Page](readme-assets/c2b.png)
+![Dashboard Page](readme-assets/c2c.png)
+
+### Steps:
+
+- _Click register_
+- _Fill name, email, password_
+- _Click 'Register'_
+
+### Expected Output:
+
+_Account is created successfully and redirected to homepage._
+
+### Actual Results:
+
+_Account is created successfully and redirected to homepage._
 
 ## Pages
 
