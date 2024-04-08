@@ -8,6 +8,8 @@
 - [Wireframes](#wireframes)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
+- [Color Schemes](#color-schemes)
+- [Fonts](#fonts)
 - [React Components](#react-components)
 - [Installation](#installation)
 - [Configuration](#configuration)
@@ -66,17 +68,39 @@ Short description: Wireframe for the view task page of CalenTask, displaying det
 ## Technologies Used
 
 - **Backend**: Django (Python)
+
   - Reason: Django is a powerful and popular web framework that provides a robust backend infrastructure for building scalable and secure applications.
 
 - **Frontend**: Bootstrap (HTML/CSS/JS), React (JavaScript)
+
   - Reason: Bootstrap is a widely-used CSS framework that offers a responsive and mobile-first design. React is a JavaScript library for building user interfaces, providing a component-based approach and efficient rendering.
 
 - **Calendar Component**: [react-big-calendar](https://www.npmjs.com/package/react-big-calendar)
+
   - Reason: react-big-calendar is a feature-rich and customizable calendar component for React, which provides the necessary functionality for displaying and managing tasks in a calendar format.
 
 - **Testing**: Placeholder for testing section
   - Reason: Testing is an essential part of software development to ensure the reliability and correctness of the application. Placeholder is used to indicate that the testing section is yet to be implemented.
 
+## Color Schemes
+
+The color schemes used in CalenTask are well thought out and contribute to a visually appealing user interface. The following color scheme is used:
+
+- Body Text: #000000b3
+
+In addition, the priority levels of tasks are visually represented using different background colors:
+
+- Important: Red background with white text
+- Medium: Yellow background with black text
+- Low: Green background with white text
+
+This color scheme effectively communicates the importance of tasks and helps users quickly identify their priority levels.
+
+## Fonts
+
+CalenTask utilizes the Roboto font, which is loaded using the Google Fonts API. The Roboto font is a popular choice for its clean and modern appearance, making it highly readable and suitable for both headings and body text. By using the Google Fonts API, the font is loaded efficiently and ensures consistent typography across different devices and browsers.
+
+The combination of the Roboto font and the chosen color scheme creates a visually pleasing and user-friendly interface in CalenTask.
 
 ## React Components
 
@@ -228,18 +252,23 @@ Implementing these functionalities will enhance the user experience and improve 
 ## Enhancing User Experience with React
 
 ### 1. Improved Performance
+
 By leveraging React's virtual DOM, our application achieves remarkable performance enhancements. React efficiently updates only the components that have changed, resulting in faster rendering times and a smoother user interface experience. Users will notice a significant reduction in page load times, especially when interacting with dynamic content.
 
 ### 2. Enhanced Interactivity
+
 React's component-based architecture facilitates the creation of highly interactive user interfaces. Through the use of reusable components, we've implemented seamless navigation, intuitive user interactions, and dynamic data updates. This enhances user engagement and provides a more enjoyable experience while navigating through our application.
 
 ### 3. Responsive Design
+
 With React's responsive design capabilities, our application adapts seamlessly to various screen sizes and devices. Whether users access the application on desktops, tablets, or mobile devices, they'll experience consistent functionality and visual appeal. This ensures optimal usability and accessibility across different platforms, contributing to an improved overall user experience.
 
 ### 4. Streamlined Development Workflow
+
 The declarative nature of React simplifies the development process, allowing us to focus more on building features and less on managing state and DOM manipulation. This streamlined workflow results in faster iterations, quicker bug fixes, and ultimately, a more polished end product. Users benefit from a more stable and reliable application, leading to increased satisfaction and retention.
 
 ### Conclusion
+
 In conclusion, the integration of React has been instrumental in enhancing the user experience within our application. From improved performance and enhanced interactivity to responsive design and streamlined development, React's features have contributed to a more engaging, efficient, and user-friendly experience for our audience.
 
 Thank you for exploring our project documentation. We hope you enjoy using our application!
